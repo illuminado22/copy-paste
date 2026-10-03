@@ -1,0 +1,22 @@
+{
+  "id": "jeus",
+  "order": 2,
+  "name": "Jeus",
+  "role": "Your role here",
+  "bio": "Short bio here.",
+  "photo": "/photos/jeus.jpg",
+  "hoa": {
+    "prelim": [
+      { "title": "HOA 1", "summary": "What you did.", "file": "prelim-hoa1.pdf" },
+      { "title": "HOA 2", "summary": "What you did.", "file": "prelim-hoa2.pdf" }
+    ],
+    "midterm": [],
+    "finals": []
+  },
+  "exams": {
+    "prelim": { "summary": "Exam notes.", "file": "prelim-exam.pdf" },
+    "midterm": {},
+    "final": {}
+  },
+  "reflection": "Reflection and learnings here."
+}

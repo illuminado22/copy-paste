@@ -1,0 +1,22 @@
+{
+  "id": "nikko",
+  "order": 1,
+  "name": "Nikko",
+  "role": "Your role here",
+  "bio": "Short bio here.",
+  "photo": "/photos/nikko_to.jpg",
+  "hoa": {
+    "prelim": [
+      { "title": "Hands-on Activity 1.1", "summary": "Creating Virtual Machines", "file": "1.1 Hands-on Activity - Creating Virtual Machines _ANDOY (1) (2).pdf" },
+      { "title": "HOA 2", "summary": "What you did.", "file": "prelim-hoa2.pdf" }
+    ],
+    "midterm": [],
+    "finals": []
+  },
+  "exams": {
+    "prelim": { "summary": "Exam notes.", "file": "prelim-exam.pdf" },
+    "midterm": {},
+    "final": {}
+  },
+  "reflection": "Reflection and learnings here."
+}
