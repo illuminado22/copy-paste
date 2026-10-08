@@ -1,0 +1,13 @@
+all:
+  children:
+    managed_vms:
+      hosts:
+        ubuntu1:
+          ansible_host: 192.168.56.102
+          ansible_user: server-1
+        ubuntu2:
+          ansible_host: 192.168.56.103
+          ansible_user: server-2
+        centos1:
+          ansible_host: 192.168.56.106
+          ansible_user: cent-server

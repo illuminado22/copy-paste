@@ -1,0 +1,11 @@
+--- 
+- name: Deploy containerized web app
+  hosts:  managed_vms
+  become: true
+  roles:
+    - role: docker_install
+      tags: install 
+    - role: docker_build
+      tags: build 
+    - role: docker_run
+      tags: run

@@ -1,0 +1,19 @@
+---
+# tasks file for roles/app_run
+
+- name: Open port 8080 on CentOS firewall
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+  when: ansible_distribution == "CentOS"
+
+- name: Run portfolio container
+  community.docker.docker_container:
+    name: portfolio
+    image: portfolio_app:latest
+    state: started
+    restart_policy: always
+    published_ports:
+      - "8080:80"

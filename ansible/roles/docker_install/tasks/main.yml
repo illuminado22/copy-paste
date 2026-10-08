@@ -1,0 +1,60 @@
+--- 
+# Ubuntu
+- name: Install Docker prerequisites (Ubuntu)
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Docker engine and Python SDK (Ubuntu)
+  ansible.builtin.apt:
+    name:
+      - docker.io
+      - python3-docker
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+# CentOS
+- name: Install yum-utils and prerequisites (CentOS)
+  ansible.builtin.dnf:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+      - python3-pip
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Add Docker CE repository (CentOS)
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: '0644'
+  when: ansible_distribution == "CentOS"
+
+- name: Install Docker CE packages (CentOS)
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Install Docker Python SDK via pip (CentOS)
+  ansible.builtin.pip:
+    name: docker
+    state: present
+  when: ansible_distribution == "CentOS"
+
+# Common services
+- name: Ensure Docker service is running and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
