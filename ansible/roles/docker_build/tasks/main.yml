@@ -1,16 +1,17 @@
 ---
+#ivan
 - name: Ensure deployment directory exists on remote hosts
   ansible.builtin.file:
     path: /opt/portfolio-app
     state: directory
     mode: '0755'
-
+#ivan
 - name: Copy Dockerfile to remote hosts
   ansible.builtin.copy:
     src: ../Dockerfile
     dest: /opt/portfolio-app/Dockerfile
     mode: '0644'
-
+#jeus
 - name: Compress webapp directory locally into a single tarball
   delegate_to: localhost
   become: false
@@ -22,13 +23,13 @@
       - ../webapp/node_modules
       - ../webapp/dist
       - ../webapp/.git
-
+# jeus
 - name: Transfer and extract webapp archive on managed nodes
   ansible.builtin.unarchive:
     src: /tmp/webapp.tar.gz
     dest: /opt/portfolio-app/
     mode: '0755'
-
+# nikko
 - name: Build Docker image on all nodes
   community.docker.docker_image:
     name: portfolio_app
