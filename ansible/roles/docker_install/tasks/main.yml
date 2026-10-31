@@ -1,50 +1,38 @@
---- 
-# Ubuntu
+---
 - name: Install Docker prerequisites (Ubuntu)
   ansible.builtin.apt:
-    name:
-      - ca-certificates
-      - curl
-      - gnupg
+    name: "{{ docker_ubuntu_prereqs }}"
     state: present
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
 
 - name: Install Docker engine and Python SDK (Ubuntu)
   ansible.builtin.apt:
-    name:
-      - docker.io
-      - python3-docker
+    name: "{{ docker_ubuntu_packages }}"
     state: present
   when: ansible_distribution == "Ubuntu"
+  notify: restart docker
 
-# CentOS
-- name: Install yum-utils and prerequisites (CentOS)
+- name: Install DNF prerequisites for Docker (CentOS)
   ansible.builtin.dnf:
-    name:
-      - yum-utils
-      - device-mapper-persistent-data
-      - lvm2
-      - python3-pip
+    name: "{{ docker_centos_prereqs }}"
     state: present
     update_cache: yes
   when: ansible_distribution == "CentOS"
 
-- name: Add Docker CE repository (CentOS)
+- name: Add official Docker CE repository (CentOS)
   ansible.builtin.get_url:
-    url: https://download.docker.com/linux/centos/docker-ce.repo
+    url: "{{ docker_centos_repo_url }}"
     dest: /etc/yum.repos.d/docker-ce.repo
     mode: '0644'
   when: ansible_distribution == "CentOS"
 
 - name: Install Docker CE packages (CentOS)
   ansible.builtin.dnf:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
+    name: "{{ docker_centos_packages }}"
     state: present
   when: ansible_distribution == "CentOS"
+  notify: restart docker
 
 - name: Install Docker Python SDK via pip (CentOS)
   ansible.builtin.pip:
@@ -52,9 +40,8 @@
     state: present
   when: ansible_distribution == "CentOS"
 
-# Common services
-- name: Ensure Docker service is running and enabled
+- name: Ensure Docker service is started and enabled
   ansible.builtin.service:
-    name: docker
+    name: "{{ docker_service_name }}"
     state: started
     enabled: true

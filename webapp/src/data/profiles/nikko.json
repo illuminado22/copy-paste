@@ -2,21 +2,32 @@
   "id": "nikko",
   "order": 1,
   "name": "Nikko",
-  "role": "Your role here",
-  "bio": "Short bio here.",
+  "role": "Lead developer",
+  "bio": "Group leader of team Gabo",
   "photo": "/photos/nikko_to.jpg",
   "hoa": {
     "prelim": [
       { "title": "Hands-on Activity 1.1", "summary": "Creating Virtual Machines", "file": "1.1 Hands-on Activity - Creating Virtual Machines _ANDOY (1) (2).pdf" },
-      { "title": "HOA 2", "summary": "What you did.", "file": "prelim-hoa2.pdf" }
+      { "title": "Hands-on Activity 2.1", "summary": "SSH Key-Based Authentication and GIT Setup", "file": "ANDOY_2.1 Hands-on Activity - SSH Key-Based Authentication and GIT Setup (1).pdf" },
+      { "title": "Hands-on Activity 3.1", "summary": "Install SSH server on CentOS or RHEL 8 ", "file": "Andoy_3.1 Hands-on Activity - Install SSH server on CentOS or RHEL 8.docx (1).pdf" },
+      { "title": "Hands-on Activity 4.1", "summary": "Ansible Basics ", "file": "Andoy_4.1 Hands-on Activity_ Ansible Basics.docx (1).pdf" },
+      { "title": "Hands-on Activity 5.1", "summary": "Implement Ansible roles in playbooks", "file": "Andoy_Hands-on Activity 5.1_ Implement Ansible roles in playbooks.docx (1).pdf" }
     ],
-    "midterm": [],
-    "finals": []
+    "midterm": [
+      { "title": "Hands-on Activity 6.1", "summary": "Targeting Specific Nodes", "file": "Andoy_Hands On Activity 6.1.docx (1).pdf"},
+      { "title": "Hands-on Activity 7.1", "summary": "Managing Files and Creating Roles in Ansible", "file": "[In_progress]Andoy_Hands-on Activity 7.1_ Managing Files and Creating Roles in Ansible.docx (1).pdf"},
+      { "title": "Hands-on Activity 8.1", "summary": " Install, Configure, and Manage Enterprise Availability Monitoring via Ansible", "file": "Andoy_Hands-on Activity 8.1_ Install, Configure, and Manage Enterprise Availability Monitoring via Ansible.docx (1).pdf"},
+      { "title": "Hands-on Activity 10.1", "summary": " Install, Configure and Manage Enterprise Log Monitoring via Ansible", "file": "Andoy_Hands-on Activity 10.1_ Install, Configure and Manage Enterprise Log Monitoring via Ansible.docx (2).pdf"}
+    ],
+    "finals": [
+       { "title": "Hands-on Activity 11.1", "summary": "Containerization", "file": "Andoy_Hands-on Activity 11.1_ Containerization.docx (1) (2).pdf"},
+        { "title": "Hands-on Activity 12.1", "summary": "Build a Sample Web App in a Docker Container [NONE]", "file": ""}
+    ]
   },
   "exams": {
-    "prelim": { "summary": "Exam notes.", "file": "prelim-exam.pdf" },
-    "midterm": {},
-    "final": {}
+    "prelim": { "summary": "Prelim Exam Skills ", "file": "Andoy_Prelim Exam Skills .docx-1.pdf" },
+    "midterm": { "summary": "Midterm Exam Skills ", "file": "Andoy_Midterm Skills Exam .docx-1.pdf"},
+    "final": { "summary": "Final Exam Skills ", "file": "Andoy_Final Hands-on Skills Exam.docx (1).pdf" }
   },
   "reflection": "Reflection and learnings here."
 }

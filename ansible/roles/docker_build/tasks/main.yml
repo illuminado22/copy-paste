@@ -1,40 +1,66 @@
 ---
-#ivan
+# tasks file for roles/docker_build
+
+- name: Query current local Git commit short hash
+  delegate_to: localhost
+  become: false
+  ansible.builtin.command: git rev-parse --short HEAD
+  register: git_commit
+  changed_when: false
+  failed_when: false
+  run_once: true
+
+- name: Set dynamic image tag fact if git commit was found
+  ansible.builtin.set_fact:
+    app_image_tag: "v-{{ git_commit.stdout }}"
+  when: git_commit.rc == 0 and git_commit.stdout != ""
+
+# ivan
 - name: Ensure deployment directory exists on remote hosts
   ansible.builtin.file:
-    path: /opt/portfolio-app
+    path: "{{ app_deploy_dir }}"
     state: directory
     mode: '0755'
-#ivan
+
+# ivan
 - name: Copy Dockerfile to remote hosts
   ansible.builtin.copy:
     src: ../Dockerfile
-    dest: /opt/portfolio-app/Dockerfile
+    dest: "{{ app_deploy_dir }}/Dockerfile"
     mode: '0644'
-#jeus
+
+# jeus
 - name: Compress webapp directory locally into a single tarball
   delegate_to: localhost
   become: false
   community.general.archive:
     path: ../webapp
-    dest: /tmp/webapp.tar.gz
+    dest: "{{ local_archive_path }}"
     format: gz
     exclude_path:
       - ../webapp/node_modules
       - ../webapp/dist
       - ../webapp/.git
+
 # jeus
 - name: Transfer and extract webapp archive on managed nodes
   ansible.builtin.unarchive:
-    src: /tmp/webapp.tar.gz
-    dest: /opt/portfolio-app/
+    src: "{{ local_archive_path }}"
+    dest: "{{ app_deploy_dir }}/"
     mode: '0755'
+
 # nikko
 - name: Build Docker image on all nodes
   community.docker.docker_image:
-    name: portfolio_app
-    tag: latest
+    name: "{{ app_image_name }}"
+    tag: "{{ app_image_tag }}"
     build:
-      path: /opt/portfolio-app
+      path: "{{ app_deploy_dir }}"
     source: build
     state: present
+
+- name: Remove dangling Docker images to free disk space
+  community.docker.docker_prune:
+    images: true
+    images_filters:
+      dangling: true

@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <section className="hero">
         <p className="hero-tag">&gt; hello, world_</p>
-        <h1>We are <span>Group ReNe</span></h1>
+        <h1>We are <span>Group Gabo</span></h1>
         <p className="hero-sub">
           This project showcases automation using Ansible and Docker fundamentals.
         </p>
