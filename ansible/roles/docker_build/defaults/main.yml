@@ -1,0 +1,10 @@
+---
+# roles/docker_build/defaults/main.yml
+app_deploy_dir: "/opt/portfolio-app"
+app_image_name: "portfolio_app"
+
+# Fallback tag used if not running in a git repo or if git lookup is skipped
+app_image_default_tag: "latest"
+app_image_tag: "{{ app_image_default_tag }}"
+
+local_archive_path: "/tmp/webapp.tar.gz"

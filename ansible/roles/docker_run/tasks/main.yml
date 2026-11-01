@@ -1,4 +1,3 @@
----
 # tasks file for roles/docker_run
 
 - name: Query current local Git commit short hash
@@ -33,5 +32,6 @@
     image: "{{ app_image_name }}:{{ app_image_tag }}"
     state: started
     restart_policy: "{{ app_restart_policy }}"
+    timeout: 180
     published_ports:
       - "{{ app_host_port }}:{{ app_container_port }}"

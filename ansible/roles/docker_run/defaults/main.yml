@@ -1,0 +1,12 @@
+---
+# roles/docker_run/defaults/main.yml
+app_container_name: "portfolio"
+app_image_name: "portfolio_app"
+
+# Fallback tag matching the build default
+app_image_default_tag: "latest"
+app_image_tag: "{{ app_image_default_tag }}"
+
+app_host_port: 8080
+app_container_port: 80
+app_restart_policy: "always"

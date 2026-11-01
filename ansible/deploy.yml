@@ -1,0 +1,10 @@
+---
+- name: Build Application Image and Deploy Containers
+  hosts: managed_vms
+  become: true
+  roles:
+    - role: docker_build
+      tags: build
+
+    - role: docker_run
+      tags: run

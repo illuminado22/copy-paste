@@ -1,0 +1,6 @@
+---
+- name: Run Web Application Docker Containers
+  hosts: managed_vms
+  become: true
+  roles:
+    - role: docker_run

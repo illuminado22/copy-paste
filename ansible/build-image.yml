@@ -1,0 +1,6 @@
+---
+- name: Build Web Application Docker Image
+  hosts: managed_vms
+  become: true
+  roles:
+    - role: docker_build
